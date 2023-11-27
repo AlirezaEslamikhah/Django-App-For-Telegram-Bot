@@ -29,10 +29,19 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,
+    'LOGIN_URL': '/accounts/login/',
+    'LOGOUT_URL': '/accounts/logout/',
+    'DOC_EXPANSION': 'list',
+    'URL_SCHEMA': {
+        'BASE_URL': 'http://localhost:8000/',
+    }
+}
 INSTALLED_APPS = [
     # 'django.contrib.staticfiles',  # required for serving swagger ui's css/js files
-    # 'drf_yasg',
+    # 'rest_framework_swagger',
+    'drf_yasg',
     'myapp.apps.MyappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'ocr',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +130,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')  # Adjust this based on your project structure
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
